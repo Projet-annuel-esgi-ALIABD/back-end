@@ -1,9 +1,18 @@
 # Environnements
 .env
 .venv
+venv/
+ENV/
 
 # IDEs et éditeurs
 .idea/
 .vscode/
 
 */__pycache__/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.log
+db.sqlite3
+staticfiles/
