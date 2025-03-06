@@ -1,9 +1,9 @@
 services:
   web:
     build: .
-    command: python manage.py runserver
+    command: python manage.py runserver 0.0.0.0:3000
     ports:
-      - "8000:8000"
+      - "3000:3000"
     environment:
       - SECRET_KEY=${SECRET_KEY}
       - DB_NAME=postgres
