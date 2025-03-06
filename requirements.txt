@@ -1,5 +1,6 @@
 Django>=5.1.6
 djangorestframework
+django-rest-swagger
 python-dotenv
 psycopg2-binary
 gunicorn
