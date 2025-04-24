@@ -14,5 +14,3 @@ CORS_ALLOWED_ORIGINS = [
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_EXPOSE_HEADERS = ['Content-Type', 'Authorization']
-
-APPEND_SLASH = False  # Disable appending slashes to URLs
