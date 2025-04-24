@@ -7,6 +7,10 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True  # Allow all origins
-CORS_ALLOW_CREDENTIALS = True  # Allow credentials
-CORS_EXPOSE_HEADERS = ['Content-Type', 'Authorization']  # Optional: Expose specific headers
+CORS_ALLOW_ALL_ORIGINS = False  # Change this to False for specific origins
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8080',  # Add your frontend's development URL
+    'https://dev-meteo-du-sinj.apps.fgib.fr',  # Add your frontend's production URL
+]
+CORS_ALLOW_CREDENTIALS = True
+CORS_EXPOSE_HEADERS = ['Content-Type', 'Authorization']
