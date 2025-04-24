@@ -5,3 +5,4 @@ psycopg2-binary
 gunicorn
 drf_yasg
 djangorestframework-simplejwt
+django-cors-headers
