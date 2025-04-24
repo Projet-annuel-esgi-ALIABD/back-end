@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework.decorators import api_view
-
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework import permissions
 
 @swagger_auto_schema(
     method='get',
@@ -10,5 +10,6 @@ from rest_framework.decorators import api_view
     tags=['Healthcheck']
 )
 @api_view(['GET'])
+@permission_classes([permissions.AllowAny])
 def healthcheck(request):
     return JsonResponse({"status": "ok"})
