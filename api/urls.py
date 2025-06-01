@@ -15,5 +15,5 @@ urlpatterns = [
     # User
     path('user/', UserDetailView.as_view(), name='user'),
     # Predict AI
-    path('predict/air-quality', AirQualityPredictView.as_view(), name='predict_air_quality'),
+    path('predict/air-quality/', AirQualityPredictView.as_view(), name='predict_air_quality'),
 ]
