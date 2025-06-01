@@ -2,6 +2,7 @@ from django.urls import path
 
 from api.views import RegisterView, UserDetailView, LogoutView, healthcheck
 from api.views.auth import LoginView, CustomTokenRefreshView
+from api.views.predict_air_quality import AirQualityPredictView
 
 urlpatterns = [
     # Healthcheck
@@ -13,4 +14,6 @@ urlpatterns = [
     path('token/refresh/', CustomTokenRefreshView.as_view(), name='token_refresh'),
     # User
     path('user/', UserDetailView.as_view(), name='user'),
+    # Predict AI
+    path('predict/air-quality', AirQualityPredictView.as_view(), name='predict_air_quality'),
 ]
