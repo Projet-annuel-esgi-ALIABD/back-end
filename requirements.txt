@@ -6,3 +6,6 @@ gunicorn
 drf_yasg
 djangorestframework-simplejwt
 django-cors-headers
+torch
+numpy
+scikit-learn
