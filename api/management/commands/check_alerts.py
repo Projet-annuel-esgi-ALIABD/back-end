@@ -39,7 +39,8 @@ class Command(BaseCommand):
                     triggered_by="auto",
                     threshold=threshold,
                     value=value,
-                    message=f"Seuil dépassé pour {code}: {value} (seuil: {threshold.threshold_value})"
+                    message=f"Seuil dépassé pour {code}: {value} (seuil: {threshold.threshold_value})",
+                    alert_type="critical"
                 )
                 self.stdout.write(self.style.SUCCESS(
                     f"Alerte créée pour {code}: valeur {value} (seuil: {threshold.threshold_value})"
