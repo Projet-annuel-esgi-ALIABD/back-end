@@ -5,10 +5,9 @@ import numpy as np
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
 from api.models_ai.air_quality.air_quality_lstm_model import AirQualityLSTM
 from api.models_ai.air_quality.air_quality_scaler import scaler
-from api.serializers import AirQualityPredictInputSerializer
+from api.utils.aq_utils import get_aq_matrix_10h
 
 model = AirQualityLSTM(input_size=9, output_size=5, lstm_size=128, n_lstm_layers=2, dense_layers=[32, 16], dropout_rate=0.0)
 model.load_state_dict(torch.load("api/models_ai/air_quality/air_quality_epoch-750.pt", map_location=torch.device('cpu')))
@@ -17,12 +16,13 @@ model.eval()
 class AirQualityPredictView(APIView):
 
     @swagger_auto_schema(
-        request_body=AirQualityPredictInputSerializer,
-        tags=['Predict']
+        tags=['Predict'],
     )
-    def post(self, request):
+    def get(self, request):
         try:
-            data = np.array(request.data["sequence"])
+
+            data = get_aq_matrix_10h()
+            data = np.expand_dims(data, axis=0)
             original_shape = data.shape
 
             data_2d = data.reshape(-1, original_shape[2])

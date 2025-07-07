@@ -41,14 +41,3 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
-
-class AirQualityPredictInputSerializer(serializers.Serializer):
-    sequence = serializers.ListField(
-        child=serializers.ListField(
-            child=serializers.ListField(
-                child=serializers.FloatField(),
-                min_length=9,
-                max_length=9
-            )
-        )
-    )
