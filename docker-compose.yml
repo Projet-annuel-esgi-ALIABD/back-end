@@ -3,9 +3,9 @@ services:
     build: .
     command: sh -c "
         python manage.py migrate && 
-        sudo apt update -y &&
-        sudo apt upgrade -y &&
-        sudo apt install cron -y && 
+        apt-get update -y &&
+        apt-get upgrade -y &&
+        apt-get install cron -y && 
         python manage.py crontab add && 
         python manage.py runserver 0.0.0.0:3000
       "
