@@ -9,5 +9,5 @@ django-cors-headers
 torch
 numpy
 scikit-learn
-django-crontab
 requests
+APScheduler

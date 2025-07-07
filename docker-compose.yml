@@ -3,11 +3,7 @@ services:
     build: .
     command: sh -c "
         python manage.py migrate && 
-        apt-get update -y &&
-        apt-get upgrade -y &&
-        apt-get install cron -y && 
-        python manage.py crontab add && 
-        service cron start &&
+        python manage.py runapscheduler &&
         python manage.py runserver 0.0.0.0:3000
       "
     ports:
