@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",
-    "drf_yasg"
+    "drf_yasg",
+    "django_crontab"
 ]
 
 MIDDLEWARE = [
@@ -120,20 +121,43 @@ SWAGGER_SETTINGS = {
 
 WSGI_APPLICATION = "smart_city.wsgi.application"
 
+CRONJOBS = [
+    ('0 * * * *', 'django.core.management.call_command', ['check_alerts']),
+]
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": os.getenv("DB_NAME"),
+#         "USER": os.getenv("DB_USER"),
+#         "PASSWORD": os.getenv("DB_PASSWORD"),
+#         "HOST": os.getenv("DB_HOST"),
+#         "PORT": os.getenv("DB_PORT"),
+#     }
+# }
+
+# {
+#   "username": "john_doe",
+#   "password": "Pa$$w0rd0416"
+# }
+# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNTI3Mjg5LCJpYXQiOjE3NTA1MjYzODksImp0aSI6ImRlYmFjNzMxNjk0OTQyNDE4NzEzN2ZkNWI2NTNkOTAzIiwidXNlcl9pZCI6NX0.8JORAsUdAr52HytHEuwrmS8yfvmJTkfIHnloLzOIp2s
+
+# curl --request GET \ --url "https://api.openaq.org/v3/locations/8118" \ --header "X-API-Key: 040e630e3f5f938a70a6b0724cd55b7595211c7f0d687e1b35abe6b3480f9851"
+# https://api.openweathermap.org/data/2.5/air_pollution/history?lat=45.75&lon=4.85&start=1728835200&end=1728878400&appid=b304f74216bb6d3f5d0ffe277ef29246
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": os.getenv("DB_PORT"),
+        "NAME": "smart_city_test",
+        "USER": "postgres",
+        "PASSWORD": "041699",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
 
