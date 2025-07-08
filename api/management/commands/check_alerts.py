@@ -36,7 +36,7 @@ class Command(BaseCommand):
                     triggered_by="auto",
                     threshold=threshold,
                     value=value,
-                    message=f"Seuil dépassé pour {code}: {value} (seuil: {threshold.threshold_value})",
+                    message=f"Threshold exceeded for {code}: {value} (threshold: {threshold.threshold_value})",
                     alert_type="critical"
                 )
                 alerts_created += 1
