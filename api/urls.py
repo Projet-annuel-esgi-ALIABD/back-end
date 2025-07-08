@@ -2,7 +2,7 @@ from django.urls import path
 
 from api.views import RegisterView, UserDetailView, LogoutView, healthcheck
 from api.views.auth import LoginView, CustomTokenRefreshView
-from api.views.air_quality import Last10HoursAQView
+from api.views.air_quality import Last10HoursAQView, LastMonthAQView
 from api.views.predict_air_quality import AirQualityPredictView
 
 urlpatterns = [
@@ -19,4 +19,5 @@ urlpatterns = [
     path('predict/air-quality/', AirQualityPredictView.as_view(), name='predict_air_quality'),
     # OpenWeatherMap
     path('aq/last-10h/', Last10HoursAQView.as_view(), name='last_10h_aq'),
+    path('aq/last-month/', LastMonthAQView.as_view(), name='last_month_aq'),
 ]
