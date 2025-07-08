@@ -11,6 +11,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         scheduler = BackgroundScheduler()
         scheduler.add_job(lambda: call_command('check_alerts'), 'interval', minutes=1)
+        scheduler.add_job(lambda: call_command('fetch_latest_air'), 'interval', minutes=1)
         scheduler.start()
         self.stdout.write(self.style.SUCCESS('APScheduler démarré.'))
 
@@ -27,4 +28,3 @@ class Command(BaseCommand):
                 time.sleep(1)
         except (KeyboardInterrupt, SystemExit):
             scheduler.shutdown()
-

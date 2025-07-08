@@ -22,11 +22,8 @@ class Command(BaseCommand):
         components = data["list"][0]["components"]
         aqi = data["list"][0]["main"]["aqi"]
 
-        self.stdout.write("--- CRONJOB ---")
-        self.stdout.write(f"Valeurs mesurées : {components}")
-        self.stdout.write(f"AQI mesuré : {aqi}")
-
         thresholds = AlertThreshold.objects.filter(active=True)
+        alerts_created = 0
         for threshold in thresholds:
             code = threshold.indicator.code
             if code == "aqi":
@@ -42,6 +39,11 @@ class Command(BaseCommand):
                     message=f"Seuil dépassé pour {code}: {value} (seuil: {threshold.threshold_value})",
                     alert_type="critical"
                 )
-                self.stdout.write(self.style.SUCCESS(
-                    f"Alerte créée pour {code}: valeur {value} (seuil: {threshold.threshold_value})"
-                ))
+                alerts_created += 1
+                msg = (
+                    "--- CRONJOB ALERTE ---\n"
+                    f"Valeurs mesurées : {components}\n"
+                    f"AQI mesuré : {aqi}\n"
+                    f"Nombre d'alertes créées : {alerts_created}\n"
+                )
+                self.stdout.write(self.style.SUCCESS(msg))
