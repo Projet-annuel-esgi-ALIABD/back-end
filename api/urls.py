@@ -4,7 +4,7 @@ from api.views import RegisterView, UserDetailView, LogoutView, healthcheck
 from api.views.auth import LoginView, CustomTokenRefreshView
 from api.views.air_quality import Last10HoursAQView, LastMonthAQView
 from api.views.predict_air_quality import AirQualityPredictView
-from api.views.weather_prediction import WeatherPredictionView, MultipleWeatherPredictionView
+from api.views.weather_prediction import WeatherPredictionView
 
 urlpatterns = [
     # Healthcheck
@@ -19,7 +19,6 @@ urlpatterns = [
     # Predict AI
     path('predict/air-quality/', AirQualityPredictView.as_view(), name='predict_air_quality'),
     path('predict/weather/', WeatherPredictionView.as_view(), name='predict_weather'),
-    path('predict/weather/multiple/', MultipleWeatherPredictionView.as_view(), name='predict_weather_multiple'),
     # OpenWeatherMap
     path('aq/last-10h/', Last10HoursAQView.as_view(), name='last_10h_aq'),
     path('aq/last-month/', LastMonthAQView.as_view(), name='last_month_aq'),
