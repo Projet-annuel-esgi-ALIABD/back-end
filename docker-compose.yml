@@ -2,8 +2,7 @@ services:
   web:
     build: .
     command: sh -c "
-        python manage.py migrate && 
-        python manage.py runapscheduler &&
+        python manage.py migrate &&
         python manage.py runserver 0.0.0.0:3000
       "
     ports:
@@ -16,4 +15,17 @@ services:
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
       - DEBUG=${DEBUG}
-      
+
+  scheduler:
+    build: .
+    command: python manage.py runapscheduler
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - DB_NAME=postgres
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DEBUG=${DEBUG}
+    depends_on:
+      - web
