@@ -11,3 +11,8 @@ numpy
 scikit-learn
 requests
 APScheduler
+pandas
+xgboost
+matplotlib
+seaborn
+joblib
