@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
+from api.models import Alerte, AlertThreshold
+
+
 class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
@@ -41,3 +44,13 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+class AlerteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Alerte
+        fields = '__all__'
+
+class AlertThresholdSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AlertThreshold
+        fields = '__all__'

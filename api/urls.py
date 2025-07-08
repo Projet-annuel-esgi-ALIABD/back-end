@@ -1,10 +1,17 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 
 from api.views import RegisterView, UserDetailView, LogoutView, healthcheck
+from api.views.alert_treshold import AlertThresholdView
+from api.views.alerte import AlerteView
 from api.views.auth import LoginView, CustomTokenRefreshView
 from api.views.air_quality import Last10HoursAQView, LastMonthAQView
 from api.views.predict_air_quality import AirQualityPredictView
 from api.views.weather_prediction import WeatherPredictionView
+
+router = DefaultRouter()
+router.register(r'alerte', AlerteView, basename='alerte')
+router.register(r'alert-treshold', AlertThresholdView, basename='alert_threshold')
 
 urlpatterns = [
     # Healthcheck
@@ -22,4 +29,6 @@ urlpatterns = [
     # OpenWeatherMap
     path('aq/last-10h/', Last10HoursAQView.as_view(), name='last_10h_aq'),
     path('aq/last-month/', LastMonthAQView.as_view(), name='last_month_aq'),
+    # CRUD views
+    path('', include(router.urls)),
 ]
