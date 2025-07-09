@@ -10,8 +10,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         scheduler = BackgroundScheduler()
-        scheduler.add_job(lambda: call_command('check_alerts'), 'interval', minutes=1)
-        scheduler.add_job(lambda: call_command('fetch_latest_air'), 'interval', minutes=1)
+        scheduler.add_job(lambda: call_command('check_alerts'), 'interval', minutes=30)
+        scheduler.add_job(lambda: call_command('fetch_latest_air'), 'interval', minutes=30)
         scheduler.start()
         self.stdout.write(self.style.SUCCESS('APScheduler démarré.'))
 
