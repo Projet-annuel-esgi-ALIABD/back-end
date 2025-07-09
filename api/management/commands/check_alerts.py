@@ -3,6 +3,7 @@ import requests
 from django.utils import timezone
 from api.models import AlertThreshold, Alerte
 import os
+from django import db
 
 API_KEY = os.environ.get("OPENWEATHERMAP_API_KEY")
 
@@ -10,6 +11,7 @@ class Command(BaseCommand):
     help = "Vérifie les seuils d'alerte et crée une alerte si besoin."
 
     def handle(self, *args, **kwargs):
+        db.close_old_connections()
         url = "https://api.openweathermap.org/data/2.5/air_pollution"
         params = {
             "lat": 45.75,
