@@ -7,6 +7,7 @@ from api.views.alerte import AlerteView
 from api.views.auth import LoginView, CustomTokenRefreshView
 from api.views.air_quality import Last10HoursAQView, LastMonthAQView
 from api.views.predict_air_quality import AirQualityPredictView
+from api.views.weather import CurrentWeatherView
 from api.views.weather_prediction import WeatherPredictionView
 
 router = DefaultRouter()
@@ -29,6 +30,8 @@ urlpatterns = [
     # OpenWeatherMap
     path('aq/last-10h/', Last10HoursAQView.as_view(), name='last_10h_aq'),
     path('aq/last-month/', LastMonthAQView.as_view(), name='last_month_aq'),
+    # Weather
+    path('weather/', CurrentWeatherView.as_view(), name='current_weather' ),
     # CRUD views
     path('', include(router.urls)),
 ]
