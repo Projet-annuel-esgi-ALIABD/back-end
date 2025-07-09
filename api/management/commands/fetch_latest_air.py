@@ -3,6 +3,7 @@ import requests
 from django.core.management.base import BaseCommand
 from datetime import datetime, timezone, timedelta
 from api.models import AirQualityMeasurement
+from django import db
 
 API_KEY = os.environ.get("OPENWEATHERMAP_API_KEY")
 
@@ -10,6 +11,7 @@ class Command(BaseCommand):
     help = "Importe la mesure de qualité de l'air pour la dernière heure."
 
     def handle(self, *args, **kwargs):
+        db.close_old_connections()
         end_dt = datetime.now(timezone.utc)
         start_dt = end_dt - timedelta(hours=1)
         url = "https://api.openweathermap.org/data/2.5/air_pollution/history"

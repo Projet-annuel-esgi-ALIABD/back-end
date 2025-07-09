@@ -2,7 +2,6 @@ import os
 import requests
 from django.core.management.base import BaseCommand
 from datetime import datetime, timezone, timedelta
-from django import db
 from api.models import AirQualityMeasurement
 
 API_KEY = os.environ.get("OPENWEATHERMAP_API_KEY")
@@ -11,7 +10,6 @@ class Command(BaseCommand):
     help = 'Importe les données de qualité de l’air (6 derniers mois, sans doublon)'
 
     def handle(self, *args, **kwargs):
-        db.close_old_connections()
         lat = 45.75
         lon = 4.85
         end_dt = datetime.now(timezone.utc)
